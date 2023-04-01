@@ -16,6 +16,7 @@ public class WhatsappRepository {
     private HashSet<String> userMobile;
     private int customGroupCount;
     private int messageId;
+    private List<User> userDB;
 
     public WhatsappRepository(){
         this.groupMessageMap = new HashMap<Group, List<Message>>();
@@ -25,5 +26,49 @@ public class WhatsappRepository {
         this.userMobile = new HashSet<>();
         this.customGroupCount = 0;
         this.messageId = 0;
+    }
+
+    public void createUser(String name, String mobile) {
+        //If the mobile number exists in database, throw "User already exists" exception
+        //Otherwise, create the user and return "SUCCESS"
+        User newUser = new User(name, mobile);
+        userDB.add(newUser);
+    }
+
+//    public HashSet<String> getAllUserMobiles() {
+//        return nurseDB.values().stream().toList();
+//    }
+
+
+    public List<User> getUserDB() {
+        return userDB;
+    }
+
+    public HashMap<Group, List<User>> getGroupUserMap() {
+        return groupUserMap;
+    }
+
+    public HashMap<Group, List<Message>> getGroupMessageMap() {
+        return groupMessageMap;
+    }
+
+    public HashMap<Message, User> getSenderMap() {
+        return senderMap;
+    }
+
+    public HashMap<Group, User> getAdminMap() {
+        return adminMap;
+    }
+
+    public HashSet<String> getUserMobile() {
+        return userMobile;
+    }
+
+    public int getCustomGroupCount() {
+        return customGroupCount;
+    }
+
+    public int getMessageId() {
+        return messageId;
     }
 }
